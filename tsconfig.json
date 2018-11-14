@@ -9,6 +9,7 @@
     // Don't emit; allow Babel to transform files.
     "noEmit": true,
     "noUnusedLocals": true,
+    "noImplicitAny": true,
     // Enable strictest settings like strictNullChecks & noImplicitAny.
     "strict": true,
     // Import non-ES modules as default imports.
