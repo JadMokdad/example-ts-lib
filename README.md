@@ -16,11 +16,11 @@ That's what this project demonstrates. It's the Redux build system as of
 [this commit](https://github.com/reduxjs/redux/tree/afd762f182f609789659dc44764d4e64792bf9a5),
 updated to support TypeScript.
 
+### JSX
+
+Refer to [this branch](https://github.com/jamesplease/example-ts-lib/tree/jsx) to see a version of this build
+system that supports libraries that utilize JSX (i.e.; React component libraries).
+
 ### What's missing?
 
-This doesn't show how to:
-
-- set up unit testing
-- use JSX
-
-For now, that is an exercise left up to the reader.
+This doesn't show how to set up unit testing. That will likely come in a future updat.e
