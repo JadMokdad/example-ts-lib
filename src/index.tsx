@@ -1,5 +1,11 @@
 import React from 'react';
 
-export default function double(num: number): JSX.Element {
-  return <div />;
+interface doubleOptions {
+  num: number;
+}
+
+export default function double(
+  { num }: doubleOptions = { num: 0 }
+): JSX.Element {
+  return <div>{num}</div>;
 }
