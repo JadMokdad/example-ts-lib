@@ -23,4 +23,12 @@ system that supports libraries that utilize JSX (i.e.; React component libraries
 
 ### What's missing?
 
-This doesn't show how to set up unit testing. That will likely come in a future updat.e
+This doesn't show how to set up unit testing. That will likely come in a future update.
+
+### Caveats
+
+The `.mjs` build is, according to the Redux code comments, for browsers. It's a nice idea, but the import paths
+of any third-party dependencies that you don't want to bundle, such as React in the JSX branch,
+aren't updated to reference a path that a browser can resolve.
+
+For that reason, you may want to remove that build output for certain projects.
