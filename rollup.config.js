@@ -2,37 +2,39 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
+import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
 export default [
   // CommonJS
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: { file: 'lib/please-lib.js', format: 'cjs', indent: false },
     external: [
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
     ],
-    plugins: [babel()],
+    plugins: [typescript(), babel()],
   },
 
   // ES
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: { file: 'es/please-lib.js', format: 'es', indent: false },
     external: [
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
     ],
-    plugins: [babel()],
+    plugins: [typescript(), babel()],
   },
 
   // ES for Browsers
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: { file: 'es/please-lib.mjs', format: 'es', indent: false },
     plugins: [
+      typescript(),
       nodeResolve({
         jsnext: true,
       }),
@@ -52,7 +54,7 @@ export default [
 
   // UMD Development
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: {
       file: 'dist/please-lib.js',
       format: 'umd',
@@ -60,6 +62,7 @@ export default [
       indent: false,
     },
     plugins: [
+      typescript(),
       nodeResolve({
         jsnext: true,
       }),
@@ -74,7 +77,7 @@ export default [
 
   // UMD Production
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: {
       file: 'dist/please-lib.min.js',
       format: 'umd',
@@ -82,6 +85,7 @@ export default [
       indent: false,
     },
     plugins: [
+      typescript(),
       nodeResolve({
         jsnext: true,
       }),
