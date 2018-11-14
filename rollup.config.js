@@ -1,5 +1,6 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
+import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
@@ -8,7 +9,7 @@ import pkg from './package.json';
 export default [
   // CommonJS
   {
-    input: 'src/index.ts',
+    input: 'src/index.tsx',
     output: { file: 'lib/please-lib.js', format: 'cjs', indent: false },
     external: [
       ...Object.keys(pkg.dependencies || {}),
@@ -19,7 +20,7 @@ export default [
 
   // ES
   {
-    input: 'src/index.ts',
+    input: 'src/index.tsx',
     output: { file: 'es/please-lib.js', format: 'es', indent: false },
     external: [
       ...Object.keys(pkg.dependencies || {}),
@@ -30,12 +31,23 @@ export default [
 
   // ES for Browsers
   {
-    input: 'src/index.ts',
-    output: { file: 'es/please-lib.mjs', format: 'es', indent: false },
+    input: 'src/index.tsx',
+    output: {
+      file: 'es/please-lib.mjs',
+      format: 'es',
+      indent: false,
+      globals: {
+        react: 'React',
+      },
+    },
+    external: ['react'],
     plugins: [
       typescript(),
       nodeResolve({
         jsnext: true,
+      }),
+      commonjs({
+        include: 'node_modules/**',
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
@@ -53,17 +65,24 @@ export default [
 
   // UMD Development
   {
-    input: 'src/index.ts',
+    input: 'src/index.tsx',
     output: {
       file: 'dist/please-lib.js',
       format: 'umd',
       name: 'PleaseLib',
       indent: false,
+      globals: {
+        react: 'React',
+      },
     },
+    external: ['react'],
     plugins: [
       typescript(),
       nodeResolve({
         jsnext: true,
+      }),
+      commonjs({
+        include: 'node_modules/**',
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('development'),
@@ -73,17 +92,24 @@ export default [
 
   // UMD Production
   {
-    input: 'src/index.ts',
+    input: 'src/index.tsx',
     output: {
       file: 'dist/please-lib.min.js',
       format: 'umd',
       name: 'PleaseLib',
       indent: false,
+      globals: {
+        react: 'React',
+      },
     },
+    external: ['react'],
     plugins: [
       typescript(),
       nodeResolve({
         jsnext: true,
+      }),
+      commonjs({
+        include: 'node_modules/**',
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
