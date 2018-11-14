@@ -1,4 +1,4 @@
-# Please TS Lib Test
+# Example TypeScript Library
 
 This example project is set up with a build system that:
 
@@ -12,8 +12,9 @@ Every now and again, I make JavaScript libraries. I believe that Redux's build s
 quite nice. Were I to use something similar, the only addition that I would like is to
 have the ability to use TypeScript.
 
-And that's what this project is. It's the Redux build system as of [this commit](https://github.com/reduxjs/redux/tree/afd762f182f609789659dc44764d4e64792bf9a5), updated
-to support TypeScript.
+That's what this project demonstrates. It's the Redux build system as of
+[this commit](https://github.com/reduxjs/redux/tree/afd762f182f609789659dc44764d4e64792bf9a5),
+updated to support TypeScript.
 
 ### What's missing?
 
